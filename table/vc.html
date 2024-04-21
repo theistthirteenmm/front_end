@@ -45,25 +45,25 @@
   <div class="form-group">
     <label for="carType">نوع ماشین:</label>
     <select id="carType">
-      <option value="1">Type 1</option>
-      <option value="2">Type 2</option>
-      <option value="3">Type 3</option>
+      <option value="1">سواری</option>
+      <option value="2">سنگین</option>
+      <option value="3">سبک</option>
     </select>
   </div>
   <div class="form-group">
     <label for="factory">کارخانه تولید کننده:</label>
     <select id="factory">
-      <option value="1">Type 1</option>
-      <option value="2">Type 2</option>
-      <option value="3">Type 3</option>
+      <option value="1">سایپا</option>
+      <option value="2">ایران خودرو</option>
+      <option value="3">کرمان خودرو</option>
     </select>
   </div>
   <div class="form-group">
     <label for="placeOfVisit">محل بازدید:</label>
     <select id="placeOfVisit">
-      <option value="1">Type 1</option>
-      <option value="2">Type 2</option>
-      <option value="3">Type 3</option>
+      <option value="1">تهران</option>
+      <option value="2">ورامین</option>
+      <option value="3">شهریار</option>
     </select>
   </div>
   <div class="form-group">
@@ -73,6 +73,14 @@
   <div class="form-group">
     <label for="chassisNo">شماره بدنه:</label>
     <input type="text" id="chassisNo" placeholder="Enter chassis number">
+  </div>
+  <div class="form-group">
+    <label for="style">مدل:</label>
+    <input type="text" id="style" placeholder="Enter style">
+  </div>
+  <div class="form-group">
+    <label for="system">سیستم:</label>
+    <input type="text" id="system" placeholder="Enter system">
   </div>
   <button id="saveBtn">Save</button>
 </div>
@@ -85,13 +93,21 @@
     var chassisNo = document.getElementById('chassisNo').value;
     var factory = document.getElementById('factory').value;
     var placeOfVisit = document.getElementById('placeOfVisit').value;
+    var style = document.getElementById('style').value;
+    var system = document.getElementById('system').value;
 
     var data = {
       carType: carType,
       engineNumber: engineNumber,
       chassisNo: chassisNo,
-      factory: factory,
-      placeOfVisit: placeOfVisit,
+      factory: {
+        id: factory
+      },
+      placeOfVisit: {
+        id: placeOfVisit,
+      },
+      style: style,
+      system: system,
     };
 
     fetch('http://localhost:8080/vehicles-controller/save', {

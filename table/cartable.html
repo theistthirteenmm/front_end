@@ -50,10 +50,9 @@
 <table id="dataTable">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Cartable Name</th>
-    <th>Task Name</th>
-    <th>Actions</th>
+    <th>شناسه</th>
+    <th>عنوان اقدام</th>
+    <th>مشاهده</th>
   </tr>
   </thead>
   <tbody>
@@ -65,10 +64,10 @@
 <table id="receivedDataTable">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Chassis No</th>
-    <th>Style</th>
-    <th>Allocation Status</th>
+    <th>شناسه</th>
+    <th>شماره شاستی</th>
+    <th>مدل</th>
+    <th>وضعیت تخصیص</th>
   </tr>
   </thead>
   <tbody>
@@ -94,8 +93,7 @@
           row.innerHTML = `
               <td>${item.id}</td>
               <td>${item.cartableName}</td>
-              <td>${item.taskName}</td>
-              <td><button onclick="sendRequest(${item.id})">Send Request</button></td>
+              <td><button onclick="sendRequest(${item.id})">مشاهده</button></td>
             `;
           tableBody.appendChild(row);
         });

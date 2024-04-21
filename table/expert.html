@@ -43,10 +43,13 @@
 <table id="expertsTable">
   <thead>
   <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Field</th>
-    <th>Experience</th>
+    <th>شناسه</th>
+    <th>اسم فامیلی</th>
+    <th>رتبه</th>
+    <th>شماره ملی</th>
+    <th>ظرفیت</th>
+    <th>ظرفیت</th>
+    <th>گروه</th>
   </tr>
   </thead>
   <tbody>
@@ -54,7 +57,7 @@
   </tbody>
 </table>
 
-<button onclick="goToRegisterPage()" class="add-expert-btn">Register New Expert</button>
+<button onclick="goToRegisterPage()" class="add-expert-btn">ثبت کارشناس جدید</button>
 
 <script>
   // Fetch data when the page loads
@@ -78,7 +81,10 @@
               <td>${expert.id}</td>
               <td>${expert.expertsName} ${expert.family}</td>
               <td>${expert.rank}</td>
+              <td>${expert.nationalCode}</td>
               <td>${expert.capacity}</td>
+              <td>${expert.capacityMaxAllocation}</td>
+              <td>${expert.category.categoryName}</td>
             `;
           tableBody.appendChild(row);
         });

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نمایش اطلاعات دسته‌بندی‌ها</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>لیست دسته‌بندی‌ها</h2>
+  <table id="categoryTable">
+    <thead>
+    <tr>
+      <th>شناسه</th>
+      <th>نام گروه</th>
+      <th>حد اکثر ظرفیت</th>
+      <th>حد اقل ظرفیت</th>
+      <th>ظرفیت ماهانه کارشناسان</th>
+
+    </tr>
+    </thead>
+    <tbody id="categoryTableBody">
+    <!-- اینجا داده‌ها قرار می‌گیرند -->
+    </tbody>
+  </table>
+
+  <button onclick="loadCategories()">بارگیری دسته‌بندی‌ها</button>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', fetchData);
+  function fetchData() {
+
+    var token = localStorage.getItem('accessToken'); // دریافت توکن از localStorage
+    var url = 'http://localhost:8080/category-controller/loadMapper';
+    fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#categoryTableBody'); // تغییر #expertsTable به #categoryTableBody
+        tableBody.innerHTML = '';
+        data.forEach(category => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+             <td>${category.id}</td>
+             <td>${category.categoryName}</td>
+             <td>${category.categoryMin}</td>
+             <td>${category.categoryMax}</td>
+             <td>${category.capacityExpert}</td>
+
+        `;
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => console.error('Error:', error));
+  }
+
+
+</script>
+</body>
+</html>
